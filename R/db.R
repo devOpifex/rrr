@@ -92,3 +92,36 @@ authenticate_user <- \(con, email, password) {
   })
   dbFetch(user)
 }
+
+get_path <- \(con, path) {
+  query <- sprintf(
+    "SELECT * FROM urls WHERE hash = ?"
+  )
+  obj <- dbSendQuery(con, query)
+  dbBind(obj, list(path))
+  on.exit({
+    dbClearResult(obj)
+  })
+  dbFetch(obj)
+}
+
+path_exists <- \(con, path) {
+  if(path %in% FORBIDDEN_PATHS)
+    return(TRUE)
+
+  p <- get_path(con, path)
+
+  if(nrow(p) == 0L)
+    return(FALSE)
+
+  return(TRUE)
+}
+
+add_path <- \(con, user_id, original, hash) {
+  row <- data.frame(
+    user_id = user_id,
+    original = original,
+    hash = hash
+  )
+  dbAppendTable(con, "urls", row)
+}

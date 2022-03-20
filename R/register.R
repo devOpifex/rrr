@@ -62,8 +62,7 @@ register_post <- \(con) {
       user$id
     )
 
-    res$template_register(
-      success = "Account created"
-    )
+    res$status <- 301L
+    res$redirect("/profile")
   }
 }

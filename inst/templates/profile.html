@@ -28,11 +28,25 @@
                   rrr.is/
                 </a>
               </p>
-              <p class="control is-expanded">
-                <input name="path" class="input" type="text" placeholder="xyz">
+              <div class="control is-expanded">
+                <input name="path" class="input [ ifelse(path_error != '', 'is-danger', '') %]" type="text" placeholder="xyz">
+              </div>
+              <p class="help is-danger">
+                [% path_error %]
               </p>
             </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-link">Shorten</button>
+              </div>
+            </div> 
           </form>
+          <p class="has-text-danger">
+            [% error %]
+          </p>
+          <a class="has-text-succcess" href="http://[% shortened %]">
+            [% shortened %]
+          </p>
         </div>
       </div> 
     </div>

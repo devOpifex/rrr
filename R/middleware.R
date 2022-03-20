@@ -5,7 +5,6 @@ mid_tmpl_register <- \(con) {
     res$template_register <- \(
       username = "",
       password = "",
-      success = "",
       existing_email = ""
     ) {
       res$render(
@@ -17,7 +16,6 @@ mid_tmpl_register <- \(con) {
           req,
           username = username,
           password = password,
-          success = success,
           existing_email = existing_email
         )
       )
@@ -46,8 +44,11 @@ mid_tmpl_register <- \(con) {
 
     res$template_profile <- \(
       email = "",
-      urls = NULL,
-      url = ""
+      urls = list(),
+      url = "",
+      shortened = "",
+      path_error = "",
+      error = ""
     ) {
       res$render(
         template_path(
@@ -58,7 +59,10 @@ mid_tmpl_register <- \(con) {
           req,
           email = email,
           urls = urls,
-          url = url
+          url = url,
+          shortened = shortened,
+          path_error = path_error,
+          error = error
         )
       )
     }

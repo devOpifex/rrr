@@ -6,9 +6,9 @@
 </head>
 <body>
   [! partials/before-body.html !]
-  <h1>Login</h1>
   <section class="section">
     <div class="container">
+      <h1>Login</h1>
       <form action="/login" method="POST" enctype="multipart/form-data">
         <div class="field">
           <p class="control has-icons-left has-icons-right">
@@ -39,7 +39,7 @@
           </p>
         </div> 
       </form>
-      <p class="is-danger">[% error %]</p>
+      <p class="has-text-danger">[% error %]</p>
     </div>
   </section>
 </body>

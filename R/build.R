@@ -44,6 +44,9 @@ build <- \(con) {
 
   # profile
   app$get("/profile", profile_get(con))
+  app$post("/profile", profile_post(con))
+
+  app$get("/:path", shorten_redirect(con))
 
   return(app)
 }
