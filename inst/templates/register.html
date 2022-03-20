@@ -8,45 +8,49 @@
   [! partials/before-body.html !]
   <section class="section">
     <div class="container">
-      <h1>Register</h1>
-      <form action="/register" method="POST" enctype="multipart/form-data">
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input name="email" class="input [% if(username != '') 'is-danger' else '' %]" type="email" placeholder="me@company.com" value="[% existing_email %]">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
-            </span>
-          </p>
-          <p class="help is-danger">[% username %]</p>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="title">Register</h1>
+          <form action="/register" method="POST" enctype="multipart/form-data">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input name="email" class="input [% if(username != '') 'is-danger' else '' %]" type="email" placeholder="me@company.com" value="[% existing_email %]">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+              <p class="help is-danger">[% username %]</p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input name="password" class="input" type="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input name="password2" class="input [% if(password != '') 'is-danger' else '' %]" type="password" placeholder="Re-enter Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+              <p class="help is-danger">[% password %]</p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success">
+                  Register
+                </button>
+              </p>
+            </div> 
+          </form>
         </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input name="password" class="input" type="password" placeholder="Password">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <div class="field">
-          <p class="control has-icons-left">
-            <input name="password2" class="input [% if(password != '') 'is-danger' else '' %]" type="password" placeholder="Re-enter Password">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-          <p class="help is-danger">[% password %]</p>
-        </div>
-        <div class="field">
-          <p class="control">
-            <button class="button is-success">
-              Register
-            </button>
-          </p>
-        </div> 
-      </form>
+      </div>
     </div>
   </section>
 </body>
