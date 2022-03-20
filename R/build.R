@@ -39,6 +39,9 @@ build <- \(con) {
   app$get("/login", login_get(con))
   app$post("/login", login_post(con))
 
+  # logout
+  app$get("/logout", logout_get)
+
   # profile
   app$get("/profile", profile_get(con))
 
