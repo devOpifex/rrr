@@ -12,7 +12,7 @@ profile_get <- \(con) {
 
     res$template_profile(
       email = user$email,
-      urls = urls$hash
+      urls = urls
     )
   }
 }
@@ -80,4 +80,10 @@ shortened_path <- \(path) {
     BASE_URL,
     path
   )
+}
+
+ws_delete_url <- \(con) {
+  \(msg, ws) {
+    delete_url(con, msg)
+  }
 }

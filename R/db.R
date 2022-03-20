@@ -137,3 +137,15 @@ get_urls <- \(con, user_id) {
   })
   dbFetch(obj)
 }
+
+#' @importFrom DBI dbSendStatement
+delete_url <- \(con, path) {
+  query <- sprintf(
+    "DELETE FROM urls WHERE hash = ?"
+  )
+  obj <- dbSendStatement(con, query)
+  dbBind(obj, list(path))
+  on.exit({
+    dbClearResult(obj)
+  })
+}

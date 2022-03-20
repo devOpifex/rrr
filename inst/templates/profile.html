@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   [! partials/header.html !]
+  <script src="static/profile.js"></script>
   <title>RRR - Profile</title>
 </head>
 <body>
@@ -12,7 +13,8 @@
       <h2 class="subtitle">[% email %]</h2>
       <div class="columns">
         <div class="column">
-          <a href="https://rrr.is/[% urls %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls %]</span></span></a><br/>
+          <h2 class="is-size-4">Your URLs</h2>
+          <p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <a class=""><span class="icon has-text-danger"><i class="fas fa-trash delete-url" data-hash="[% urls$hash %]"></i></span></p>
         </div>
         <div class="column">
           <h2 class="is-size-4">Shorten URL</h2>
