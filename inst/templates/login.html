@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  [! partials/header.html !]
+  <title>Login</title>
+</head>
+<body>
+  [! partials/before-body.html !]
+  <h1>Login</h1>
+  <form action="/login" method="POST" enctype="multipart/form-data">
+    <div class="field">
+      <p class="control has-icons-left has-icons-right">
+        <input name="email" class="input [% if(username != '') 'is-danger' else '' %]" type="email" placeholder="Email">
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+      </p>
+      <p class="help is-danger">[% username %]</p>
+    </div>
+    <div class="field">
+      <p class="control has-icons-left">
+        <input name="password" class="input [% if(password != '') 'is-danger' else '' %]" type="password" placeholder="Password">
+        <span class="icon is-small is-left">
+          <i class="fas fa-lock"></i>
+        </span>
+      </p>
+      <p class="help is-danger">[% password %]</p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <button class="button is-success">
+          Login
+        </button>
+      </p>
+    </div> 
+  </form>
+  <p class="is-danger">[% error %]</p>
+</body>
+</html>
+
+
