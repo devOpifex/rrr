@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
+    <a class="navbar-item" href="/">
       <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
     </a>
 
@@ -47,7 +47,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          [% if(!authenticated) '<a class="button is-primary" href="/register"><strong>Register</strong></a><a href="/login" class="button is-light">Log in</a>' else '<a href="/logout" class="button is-light">Log out</a>' %]
+          [% if(!authenticated) '<a class="button is-primary" href="/register"><strong>Register</strong></a><a href="/login" class="button is-light">Log in</a>' else '<a class="button is-primary" href="/profile"><strong>Profile</strong></a><a href="/logout" class="button is-light">Log out</a>' %]
         </div>
       </div>
     </div>

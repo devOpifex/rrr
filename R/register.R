@@ -24,7 +24,8 @@ register_post <- \(con) {
     if(is.null(body$password) || is.null(body$password2))
       return(
         res$template_register(
-          "Missing password"
+          password = "Missing password",
+          existing_email = body$email
         )
       )
 
@@ -32,7 +33,8 @@ register_post <- \(con) {
     if(body$password != body$password2)
       return(
         res$template_register(
-          password = "Passwords do not match"
+          password = "Passwords do not match",
+          existing_email = body$email
         )
       )
 
@@ -40,7 +42,8 @@ register_post <- \(con) {
     if(nchar(body$password) < MIN_PASSWORD_LENGTH)
       return(
         res$template_register(
-          password = "Password must be at least 5 characters long"
+          password = "Password must be at least 5 characters long",
+          existing_email = body$email
         )
       )
 

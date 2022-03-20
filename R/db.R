@@ -16,6 +16,16 @@ setup_database <- \(con) {
     )"
   )
 
+  dbExecute(
+    con,
+    "CREATE TABLE IF NOT EXISTS urls (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      original TEXT NOT NULL,
+      hash TEXT NOT NULL
+    )"
+  )
+
   invisible()
 }
 
