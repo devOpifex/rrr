@@ -47,12 +47,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+          [% if(!authenticated) '<a class="button is-primary" href="/register"><strong>Register</strong></a><a href="/login" class="button is-light">Log in</a>' else '<a href="/logout" class="button is-light">Log out</a>' %]
         </div>
       </div>
     </div>

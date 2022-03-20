@@ -17,7 +17,7 @@ build <- \(con) {
 
   app$use(alesia::alesia())
   app$use(scilis::scilis(get_key()))
-  app$use(mid_tmpl_register)
+  app$use(mid_tmpl_register(con))
 
   # 404 page
   app$not_found <- render_404
@@ -29,14 +29,14 @@ build <- \(con) {
   app$static(assets_path(), "static")
 
   # homepage
-  app$get("/", home_get)
+  app$get("/", home_get(con))
 
   # register
   app$get("/register", register_get)
   app$post("/register", register_post(con))
 
   # login
-  app$get("/login", login_get)
+  app$get("/login", login_get(con))
   app$post("/login", login_post(con))
 
   # profile

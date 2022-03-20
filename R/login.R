@@ -1,7 +1,7 @@
 login_get <- \(con) { 
   \(req, res) {
     # user is already signed in
-    if(cookie_valid(con, req$cookie$rrr)){
+    if(is_authenticated(con, req$cookie$rrr)){
       res$status <- 302L
       return(
         res$redirect("/")
@@ -46,7 +46,6 @@ login_post <- \(con) {
         )
       )
 
-    print(user$id)
     res$cookie(
       "rrr",
       user$id

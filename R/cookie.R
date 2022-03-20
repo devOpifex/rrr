@@ -1,4 +1,4 @@
-cookie_valid <- \(con, cookie) {
+is_authenticated <- \(con, cookie) {
   if(length(cookie) == 0L)
     return(FALSE)
 
