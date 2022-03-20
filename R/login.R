@@ -1,15 +1,13 @@
-login_get <- \(con) { 
-  \(req, res) {
-    # user is already signed in
-    if(is_authenticated(con, req$cookie$rrr)){
-      res$status <- 302L
-      return(
-        res$redirect("/profile")
-      )
-    }
-
-    res$template_login()
+login_get <- \(req, res) { 
+  # user is already signed in
+  if(req$authenticated){
+    res$status <- 302L
+    return(
+      res$redirect("/profile")
+    )
   }
+
+  res$template_login()
 }
 
 login_post <- \(con) {

@@ -1,5 +1,7 @@
 mid_tmpl_register <- \(con) {
   \(req, res) {
+    req$authenticated <- is_authenticated(con, req$cookie$rrr)
+
     res$template_register <- \(
       username = "",
       password = "",

@@ -1,14 +1,12 @@
 MIN_PASSWORD_LENGTH <- 6L
 
-register_get <- \(con) {
-  \(req, res) {
-    if(is_authenticated(con, req$cookie$rrr)){
-      res$status <- 301L
-      return(res$redirect("/login"))
-    }
-
-    res$template_register()
+register_get <- \(req, res) {
+  if(req$authenticated){
+    res$status <- 301L
+    return(res$redirect("/login"))
   }
+
+  res$template_register()
 }
 
 register_post <- \(con) {

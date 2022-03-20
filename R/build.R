@@ -32,11 +32,11 @@ build <- \(con) {
   app$get("/", home_get(con))
 
   # register
-  app$get("/register", register_get(con))
+  app$get("/register", register_get)
   app$post("/register", register_post(con))
 
   # login
-  app$get("/login", login_get(con))
+  app$get("/login", login_get)
   app$post("/login", login_post(con))
 
   # logout
