@@ -22,7 +22,8 @@ mid_tmpl_register <- \(con) {
     res$template_login <- \(
       username = "",
       password = "",
-      error = ""
+      error = "",
+      existing_email = ""
     ) {
       res$render(
         template_path(
@@ -33,7 +34,8 @@ mid_tmpl_register <- \(con) {
           req,
           username = username,
           password = password,
-          error = error
+          error = error,
+          existing_email = existing_email
         )
       )
     }

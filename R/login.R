@@ -26,14 +26,16 @@ login_post <- \(con) {
     if(is.null(body$password))
       return(
         res$template_login(
-          password = "Missing password"
+          password = "Missing password",
+          existing_email = body$email
         )
       )
 
     if(nchar(body$password) < MIN_PASSWORD_LENGTH)
       return(
         res$template_login(
-          password = "Invalid password"
+          password = "Invalid password",
+          existing_email = body$email
         )
       )
 
@@ -42,7 +44,8 @@ login_post <- \(con) {
     if(nrow(user) == 0L)
       return(
         res$template_login(
-          error = "Invalid credentials"
+          error = "Invalid credentials",
+          existing_email = body$email
         )
       )
 

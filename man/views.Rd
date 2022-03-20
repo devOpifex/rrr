@@ -5,14 +5,7 @@
 \alias{home_get}
 \title{Home}
 \usage{
-home_get(req, res)
-}
-\arguments{
-\item{req}{An object of class `Request` as obtained by
-[ambiorix::Request].}
-
-\item{res}{An object of class `Response` as obtained by
-[ambiorix::Response].}
+home_get(con)
 }
 \description{
 Render the homepage.

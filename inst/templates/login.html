@@ -10,7 +10,7 @@
   <form action="/login" method="POST" enctype="multipart/form-data">
     <div class="field">
       <p class="control has-icons-left has-icons-right">
-        <input name="email" class="input [% if(username != '') 'is-danger' else '' %]" type="email" placeholder="Email">
+        <input name="email" class="input [% if(username != '') 'is-danger' else '' %]" type="email" placeholder="me@company.com" value="[% existing_email %]">
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
