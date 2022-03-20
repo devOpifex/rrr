@@ -1,7 +1,9 @@
-.brand{
-  color: royalblue;
+html,
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
-
-.error{
-  color: lightcoral;
+body > footer {
+    margin-top: auto;
 }
