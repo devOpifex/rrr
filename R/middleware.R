@@ -40,17 +40,19 @@ mid_tmpl_register <- \(con) {
 
     res$template_profile <- \(
       email = "",
-      urls = NULL
+      urls = NULL,
+      url = ""
     ) {
       res$render(
         template_path(
           "profile.html"
         ),
-        template_data(,
+        template_data(
           con,
           req,
-          email = user$email,
-          urls = user$urls
+          email = email,
+          urls = urls,
+          url = url
         )
       )
     }

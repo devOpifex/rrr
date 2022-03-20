@@ -4,7 +4,7 @@ login_get <- \(con) {
     if(is_authenticated(con, req$cookie$rrr)){
       res$status <- 302L
       return(
-        res$redirect("/")
+        res$redirect("/profile")
       )
     }
 
@@ -52,6 +52,6 @@ login_post <- \(con) {
     )
 
     res$status <- 302L
-    res$redirect("/")
+    res$redirect("/profile")
   }
 }

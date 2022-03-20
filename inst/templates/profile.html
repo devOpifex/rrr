@@ -13,12 +13,24 @@
     </div>
     <div class="column">
       <h2>Shorten URL</h2>
-      <div class="field">
-        <label class="label">URL</label>
-        <div class="control">
-          <input class="input" type="text" placeholder="https://ambiorix.dev">
+      <form action="/profile" method="POST" enctype="multipart/form-data">
+        <div class="field">
+          <label class="label">URL</label>
+          <div class="control">
+            <input name="url" class="input" type="text" placeholder="https://ambiorix.dev" value="[% url %]">
+          </div>
         </div>
-      </div> 
+        <div class="field has-addons">
+          <p class="control">
+            <a class="button is-static">
+              rrr.is/
+            </a>
+          </p>
+          <p class="control is-expanded">
+            <input name="path" class="input" type="text" placeholder="xyz">
+          </p>
+        </div>
+      </form>
     </div>
   </div> 
 </body>

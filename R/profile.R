@@ -11,7 +11,8 @@ profile_get <- \(con) {
 
     res$template_profile(
       email = user$email,
-      urls = user$urls
+      url = "",
+      urls = list()
     )
   }
 }
