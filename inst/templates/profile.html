@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   [! partials/header.html !]
-  <title>RRR - [% email %]</title>
+  <title>RRR - Profile</title>
 </head>
 <body>
   [! partials/before-body.html !]
@@ -12,10 +12,10 @@
       <h2 class="subtitle">[% email %]</h2>
       <div class="columns">
         <div class="column">
-          [% urls %]
+          <a href="https://rrr.is/[% urls %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls %]</span></span></a><br/>
         </div>
         <div class="column">
-          <h2>Shorten URL</h2>
+          <h2 class="is-size-4">Shorten URL</h2>
           <form action="/profile" method="POST" enctype="multipart/form-data">
             <div class="field">
               <label class="label">URL</label>

@@ -1,8 +1,11 @@
 check: document
 	Rscript -e "devtools::check()"
 
-document: 
+document: css
 	Rscript -e "devtools::document()"
 
-run:
+css:
+	npm run css-build
+
+run: css
 	Rscript app.R

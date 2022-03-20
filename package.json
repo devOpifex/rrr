@@ -1,0 +1,29 @@
+{
+  "name": "rrr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "man": "man"
+  },
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url sass/main.scss inst/assets/styles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devOpifex/rrr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devOpifex/rrr/issues"
+  },
+  "homepage": "https://github.com/devOpifex/rrr#readme",
+  "devDependencies": {
+    "bulma": "^0.9.3",
+    "node-sass": "^7.0.1"
+  }
+}

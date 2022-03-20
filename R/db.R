@@ -125,3 +125,15 @@ add_path <- \(con, user_id, original, hash) {
   )
   dbAppendTable(con, "urls", row)
 }
+
+get_urls <- \(con, user_id) {
+  query <- sprintf(
+    "SELECT * FROM urls WHERE user_id = ?"
+  )
+  obj <- dbSendQuery(con, query)
+  dbBind(obj, list(user_id))
+  on.exit({
+    dbClearResult(obj)
+  })
+  dbFetch(obj)
+}

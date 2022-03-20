@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif;
+$turquoise: #5e60ce;
+$grey-dark: #adb5bd;
+$grey-light: #dee2e6;
+$red: #f94144;
+$orange: #f3722c;
+$yellow: #ffd166;
+$green: #70e000;
+$cyan: #64dfdf;
+$blue: #5e60ce;
+$purple: #5e60ce;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$body-background-color: rgb(255, 255, 255);
+$control-border-width: 2px;
+
+// Import only what you need from Bulma
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/container.sass";
+@import "../node_modules/bulma/sass/elements/title.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
+@import "../node_modules/bulma/sass/layout/hero.sass";
+@import "../node_modules/bulma/sass/layout/section.sass";
+@import "../node_modules/bulma/sass/layout/footer.sass";
+@import "../node_modules/bulma/sass/grid/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/elements/icon.sass";
+@import "../node_modules/bulma/sass/helpers/flexbox.sass";
+@import "../node_modules/bulma/sass/helpers/typography.sass";
+@import "layout";

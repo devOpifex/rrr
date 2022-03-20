@@ -8,9 +8,11 @@ profile_get <- \(con) {
     }
 
     user <- get_user_by_id(con, req$cookie$rrr)
+    urls <- get_urls(con, user$id)
 
     res$template_profile(
-      email = user$email
+      email = user$email,
+      urls = urls$hash
     )
   }
 }
@@ -61,9 +63,12 @@ profile_post <- \(con) {
       body$url,
       body$path
     )
+    
+    urls <- get_urls(con, req$cookie$rrr)
 
     res$template_profile(
       email = user$email,
+      urls = urls,
       shortened = shortened_path(body$path)
     )
   }

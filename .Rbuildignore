@@ -2,3 +2,7 @@
 ^rrr\.sqlite3$
 ^LICENSE\.md$
 ^makefile$
+^sass$
+^node_modules$
+^package\.json$
+^package-lock\.json$
