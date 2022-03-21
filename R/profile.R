@@ -81,9 +81,3 @@ shortened_path <- \(path) {
     path
   )
 }
-
-ws_delete_url <- \(con) {
-  \(msg, ws) {
-    delete_url(con, msg)
-  }
-}

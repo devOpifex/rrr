@@ -49,7 +49,8 @@ build <- \(con) {
   # redirect
   app$get("/:path", shorten_redirect(con))
 
-  app$receive("delete-url", ws_delete_url(con))
+  # delete
+  app$post("/delete", delete_post(con))
 
   return(app)
 }
