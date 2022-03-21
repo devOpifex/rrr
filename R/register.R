@@ -38,6 +38,13 @@ register_post <- \(con) {
         )
       )
 
+    if(!is_email(body$email)) 
+      return(
+        res$template_register(
+          "Invalid email"
+        )
+      )
+
     # password too short
     if(nchar(body$password) < MIN_PASSWORD_LENGTH)
       return(
@@ -65,4 +72,14 @@ register_post <- \(con) {
     res$status <- 301L
     res$redirect("/profile")
   }
+}
+
+is_email <- \(email) {
+  if(!grepl("^[^@\\s]+@[^@\\s]+$", email, perl = TRUE))
+    return(FALSE)
+
+  if(!grepl("\\.", email))
+    return(FALSE)
+
+  return(TRUE)
 }
