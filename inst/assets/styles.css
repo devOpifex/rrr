@@ -5620,3 +5620,9 @@ html body {
 
 html body > footer {
   margin-top: auto; }
+
+.delete {
+  border: none;
+  background: none;
+  color: #f94144;
+  cursor: pointer; }

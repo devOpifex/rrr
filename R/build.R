@@ -5,6 +5,9 @@
 #' @param con Database connection.
 #' 
 #' @import ambiorix
+#' @importFrom alesia alesia
+#' @importFrom scilis scilis
+#' @importFrom signaculum signaculum
 #' 
 #' @return An object of class `Ambiorix`.
 #' 
@@ -15,9 +18,14 @@ build <- \(con) {
 
   app <- Ambiorix$new()
 
-  app$use(alesia::alesia())
-  app$use(scilis::scilis(get_key()))
+  app$use(alesia())
+  app$use(scilis(get_key()))
   app$use(mid_tmpl_register(con))
+  app$use(
+    signaculum(
+      system.file("assets/img/favicon.ico", package = "rrr")
+    )
+  )
 
   # 404 page
   app$not_found <- render_404

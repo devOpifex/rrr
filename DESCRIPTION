@@ -22,7 +22,12 @@ Imports:
     DBI,
     digest,
     htmltools,
-    scilis
+    scilis,
+    signaculum
 Suggests:
   pkgload
 RoxygenNote: 7.1.2
+Remotes:
+  devOpifex/scilis,
+  devOpifex/alesia,
+  devOpifex/signaculum
