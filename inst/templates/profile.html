@@ -53,6 +53,53 @@
       </div> 
     </div>
   </section>
+  <hr>
+  <section class="section">
+    <div class="container">
+      <h3 class="is-size-4">Reset Password</h3>
+      <div class="columns">
+        <div class="column is-one-third">
+          <form action="/reset" method="POST" enctype="multipart/form-data">
+            <div class="field">
+              <label class="label">Old Password</label>
+              <p class="control has-icons-left">
+                <input name="passwordOld" class="input" type="password" placeholder="*****">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">New Password</label>
+              <p class="control has-icons-left">
+                <input name="passwordNew" class="input" type="password" placeholder="*****">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Re-enter new password</label>
+              <p class="control has-icons-left">
+                <input name="passwordNew2" class="input [% if(password != '') 'is-danger' else '' %]" type="password" placeholder="*****">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+              <p class="help is-danger">[% password %]</p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-link">
+                  Reset
+                </button>
+              </p>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
   [! partials/footer.html !]
 </body>
 </html>

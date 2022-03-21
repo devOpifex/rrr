@@ -60,5 +60,8 @@ build <- \(con) {
   # delete
   app$post("/delete", delete_post(con))
 
+  # reset
+  app$post("/reset", reset_post(con))
+
   return(app)
 }

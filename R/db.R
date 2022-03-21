@@ -55,6 +55,18 @@ get_user <-\(con, email) {
   dbFetch(user)
 }
 
+#' @importFrom DBI dbSendQuery dbBind dbClearResult
+user_update_password <- \(con, id, password_hash) {
+  query <- sprintf(
+    "UPDATE users SET password_hash = ? WHERE id = ?"
+  )
+  user <- dbSendStatement(con, query)
+  dbBind(user, list(password_hash, id))
+  on.exit({
+    dbClearResult(user)
+  })
+}
+
 #' @importFrom DBI dbSendQuery dbBind dbClearResult dbFetch
 user_exists <-\(con, email) {
   user <- get_user(con, email)
