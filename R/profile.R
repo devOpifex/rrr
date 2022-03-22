@@ -89,6 +89,7 @@ profile_post <- \(con) {
         res$template_profile(
           email = user$email,
           path_error = "Invalid path, only accepts alphanumeric",
+          url = body$url,
           urls = urls
         )
       )
