@@ -13,7 +13,7 @@
       <div class="columns">
         <div class="column">
           <h2 class="is-size-4">Your URLs</h2>
-          <form method="POST" action="/delete" enctype="multipart/form-data"><p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><button class="delete" type="submit"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></button></p></form>
+          <form method="POST" action="/profile/delete" enctype="multipart/form-data"><p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><button class="delete" type="submit"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></button></p></form>
         </div>
         <div class="column">
           <h2 class="is-size-4">Shorten URL</h2>
@@ -59,7 +59,7 @@
       <h3 class="is-size-4">Reset Password</h3>
       <div class="columns">
         <div class="column is-one-third">
-          <form action="/reset" method="POST" enctype="multipart/form-data">
+          <form action="/profile/reset" method="POST" enctype="multipart/form-data">
             <div class="field">
               <label class="label">Old Password</label>
               <p class="control has-icons-left">

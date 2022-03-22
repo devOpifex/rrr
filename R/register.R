@@ -3,7 +3,7 @@ MIN_PASSWORD_LENGTH <- 6L
 register_get <- \(req, res) {
   if(req$authenticated){
     res$status <- 301L
-    return(res$redirect("/login"))
+    return(res$redirect("/profile/login"))
   }
 
   res$template_register()

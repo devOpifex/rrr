@@ -26,6 +26,15 @@ setup_database <- \(con) {
     )"
   )
 
+  dbExecute(
+    con,
+    "CREATE TABLE IF NOT EXISTS data (
+      url_id INTEGER,
+      date TEXT,
+      count INTEGER DEFAULT 0
+    )"
+  )
+
   invisible()
 }
 
@@ -160,4 +169,69 @@ delete_url <- \(con, path) {
   on.exit({
     dbClearResult(obj)
   })
+}
+
+#' @importFrom DBI dbGetQuery
+increment_data <- \(con, path) {
+  date <- Sys.Date()
+
+  # get path id
+  path <- get_path(con, path)
+
+  # check if row exists
+  # there is no upsert
+  # this'll determine whether we 
+  # update or create a record
+  existing <- dbGetQuery(
+    con,
+    sprintf(
+      "SELECT count FROM data WHERE date = '%s' AND url_id = %s",
+      date,
+      path$id
+    )
+  )
+  exists <- as.logical(nrow(existing))
+
+  if(exists) {
+    update_data(con, date, path$id, existing$count)
+    return()
+  }
+
+  create_data(con, date, path$id)
+}
+
+#' @importFrom DBI dbExecute
+update_data <- \(con, date, id, count) {
+  count <- count + 1
+  dbExecute(
+    con,
+    sprintf(
+      "UPDATE data SET count = %s WHERE date = '%s' AND url_id = %s;",
+      count,
+      date,
+      id
+    )
+  )
+}
+
+#' @importFrom DBI dbExecute
+create_data <- \(con, date, id) {
+  dbExecute(
+    con,
+    sprintf(
+      "INSERT INTO data (
+        url_id,
+        date,
+        count
+      )
+      VALUES (
+        %s,
+        '%s',
+        %s
+      );",
+      id,
+      date,
+      1L
+    )
+  )
 }

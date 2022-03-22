@@ -22,6 +22,6 @@ reset_post <- \(con) {
     user_update_password(con, req$cookie$rrr, new_password)
 
     res$clear_cookie("rrr")
-    res$redirect("/login")
+    res$redirect("/profile/login")
   }
 }

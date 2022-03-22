@@ -3,7 +3,7 @@ profile_get <- \(con) {
     if(!req$authenticated){
       res$status <- 301L
       return(
-        res$redirect("/login")
+        res$redirect("/profile/login")
       )
     }
 
@@ -88,6 +88,23 @@ profile <- \(con) {
   # profile
   router$get("/", profile_get(con))
   router$post("/", profile_post(con))
+
+  # register
+  router$get("/register", register_get)
+  router$post("/register", register_post(con))
+
+  # login
+  router$get("/login", login_get)
+  router$post("/login", login_post(con))
+
+  # logout
+  router$get("/logout", logout_get)
+  
+  # delete
+  router$post("/delete", delete_post(con))
+
+  # reset
+  router$post("/reset", reset_post(con))
 
   return(router)
 }

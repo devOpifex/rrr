@@ -8,6 +8,9 @@ shorten_redirect <- \(con) {
       )
     }
 
+    # increment data
+    increment_data(con, req$params$path)
+
     res$status <- 302L
     res$redirect(path$original)
   }

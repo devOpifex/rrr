@@ -42,25 +42,8 @@ build <- \(con) {
   # homepage
   app$get("/", home_get(con))
 
-  # register
-  app$get("/register", register_get)
-  app$post("/register", register_post(con))
-
-  # login
-  app$get("/login", login_get)
-  app$post("/login", login_post(con))
-
-  # logout
-  app$get("/logout", logout_get)
-
   # redirect
   app$get("/:path", shorten_redirect(con))
-
-  # delete
-  app$post("/delete", delete_post(con))
-
-  # reset
-  app$post("/reset", reset_post(con))
 
   return(app)
 }
