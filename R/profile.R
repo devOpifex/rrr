@@ -81,3 +81,16 @@ shortened_path <- \(path) {
     path
   )
 }
+
+profile <- \(con) {
+  router <- Router$new("/profile")
+
+  # profile
+  router$get("/", profile_get(con))
+  router$post("/", profile_post(con))
+
+  # data
+  router$get("/data", data_get(con))
+
+  return(router)
+}

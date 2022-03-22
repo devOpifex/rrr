@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   [! partials/header.html !]
+  <script>
+    fetch("/profile/data")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.error(error));
+  </script>
   <title>RRR - Profile</title>
 </head>
 <body>

@@ -27,6 +27,9 @@ build <- \(con) {
     )
   )
 
+  # profile router
+  app$use(profile(con))
+
   # 404 page
   app$not_found <- render_404
 
@@ -49,10 +52,6 @@ build <- \(con) {
 
   # logout
   app$get("/logout", logout_get)
-
-  # profile
-  app$get("/profile", profile_get(con))
-  app$post("/profile", profile_post(con))
 
   # redirect
   app$get("/:path", shorten_redirect(con))
