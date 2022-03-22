@@ -46,6 +46,8 @@ profile_post <- \(con) {
           error = "Missing inputs"
         )
       )
+    
+    urls <- get_urls(con, req$cookie$rrr)
 
     # path exists
     if(path_exists(con, body$path))
@@ -53,7 +55,8 @@ profile_post <- \(con) {
         res$template_profile(
           email = user$email,
           path_error = "Already exists",
-          url = body$url
+          url = body$url,
+          urls = urls
         )
       )
 
@@ -64,8 +67,6 @@ profile_post <- \(con) {
       body$path
     )
     
-    urls <- get_urls(con, req$cookie$rrr)
-
     res$template_profile(
       email = user$email,
       urls = urls,

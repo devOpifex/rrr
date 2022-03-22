@@ -45,12 +45,12 @@
                 </a>
               </p>
               <div class="control is-expanded">
-                <input name="path" class="input [ ifelse(path_error != '', 'is-danger', '') %]" type="text" placeholder="xyz">
+                <input name="path" class="input [% ifelse(path_error != '', 'is-danger', '') %]" type="text" placeholder="xyz">
               </div>
-              <p class="help is-danger">
-                [% path_error %]
-              </p>
             </div>
+            <p class="help is-danger">
+              [% path_error %]
+            </p>
             <div class="field">
               <div class="control">
                 <button class="button is-link">Shorten</button>
