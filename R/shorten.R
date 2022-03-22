@@ -1,3 +1,11 @@
+#' Redirect shroten
+#' 
+#' Redirects shortened links if found.
+#' Otherwise we return 404.
+#' 
+#' @inheritParams connection
+#' 
+#' @keywords internal
 shorten_redirect <- \(con) {
   \(req, res) {
     path <- get_path(con, req$params$path)

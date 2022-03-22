@@ -1,5 +1,8 @@
 #' Setup Database
 #' 
+#' Setup the database (creates tables),
+#' if necessary.
+#' 
 #' @inheritParams build
 #' 
 #' @importFrom DBI dbExecute
@@ -38,8 +41,20 @@ setup_database <- \(con) {
   invisible()
 }
 
+#' Retrieve a User
+#' 
+#' Retrieve a user record given it's unique id.
+#' 
+#' @inheritParams connection
+#' @param id Id of user, an integer.
+#' 
 #' @importFrom DBI dbSendQuery dbBind dbClearResult dbFetch
+#' 
+#' @keywords internal
 get_user_by_id <-\(con, id) {
+  # we use parametrised queries because this 
+  # data comes from the client
+  # it should protect against injections
   query <- sprintf(
     "SELECT * FROM users WHERE id = ?"
   )
@@ -51,7 +66,16 @@ get_user_by_id <-\(con, id) {
   dbFetch(user)
 }
 
+#' Get user by email
+#' 
+#' Retrieve a user record given its email address.
+#' 
+#' @inheritParams connection
+#' @param email Email address.
+#' 
 #' @importFrom DBI dbSendQuery dbBind dbClearResult dbFetch
+#' 
+#' @keywords internal
 get_user <-\(con, email) {
   query <- sprintf(
     "SELECT * FROM users WHERE email = ?"
@@ -64,7 +88,17 @@ get_user <-\(con, email) {
   dbFetch(user)
 }
 
+#' Update a user password
+#' 
+#' Updates a user's password.
+#' 
+#' @inheritParams connection
+#' @param id Id of the user.
+#' @param password_hash Hashed password as returned by [password_encrypt()].
+#' 
 #' @importFrom DBI dbSendQuery dbBind dbClearResult
+#' 
+#' @keywords internal
 user_update_password <- \(con, id, password_hash) {
   query <- sprintf(
     "UPDATE users SET password_hash = ? WHERE id = ?"
@@ -76,12 +110,29 @@ user_update_password <- \(con, id, password_hash) {
   })
 }
 
+#' User exists
+#' 
+#' Checks whether a user exists.
+#' 
+#' @inheritParams connection
+#' @param email Email of the user.
+#' 
 #' @importFrom DBI dbSendQuery dbBind dbClearResult dbFetch
+#' 
+#' @keywords internal
 user_exists <-\(con, email) {
   user <- get_user(con, email)
   as.logical(nrow(user))
 }
 
+#' Create a user
+#' 
+#' Creates a new user record.
+#' 
+#' @inheritParams connection
+#' @param email User's email.
+#' @param password Raw password (this function encrypts it).
+#' 
 #' @importFrom DBI dbAppendTable
 create_user <-\(con, email, password) {
   password <- password_encrypt(password) 
@@ -101,6 +152,14 @@ create_user <-\(con, email, password) {
   get_user(con, email)
 }
 
+#' Authenticate a user
+#' 
+#' Authenticates a user; compares password hashes.
+#' 
+#' @inheritParams connection
+#' @param email,password User credentials.
+#' 
+#' @keywords internal
 authenticate_user <- \(con, email, password) {
   hashed <- password_encrypt(password)
   query <- sprintf(
@@ -114,6 +173,14 @@ authenticate_user <- \(con, email, password) {
   dbFetch(user)
 }
 
+#' Retrieve a URL record
+#' 
+#' Retrieve a URL record given its path.
+#' 
+#' @inheritParams connection
+#' @param path Path to retrieve record.
+#' 
+#' @keywords internal
 get_path <- \(con, path) {
   query <- sprintf(
     "SELECT * FROM urls WHERE hash = ?"
@@ -126,7 +193,22 @@ get_path <- \(con, path) {
   dbFetch(obj)
 }
 
+#' Path exists
+#' 
+#' Checks whether a path exists.
+#' 
+#' @inheritParams connection
+#' @param path Path to check.
+#' 
+#' @return boolean, logical.
+#' 
+#' @keywords internal
 path_exists <- \(con, path) {
+  # a list of forbidden paths
+  # to avoid the user highjacking
+  # our own website
+  # ambiorix would not allow it to happend
+  # but we're better on the safe side
   if(path %in% FORBIDDEN_PATHS)
     return(TRUE)
 
@@ -138,6 +220,16 @@ path_exists <- \(con, path) {
   return(TRUE)
 }
 
+#' Add a path
+#' 
+#' Adds a record path to the database.
+#' 
+#' @inheritParams connection
+#' @param user_id Id of the user adding the path.
+#' @param original Original URL, URL being shortened.
+#' @param hash Path of the shortened URL.
+#' 
+#' @keywords internal
 add_path <- \(con, user_id, original, hash) {
   row <- data.frame(
     user_id = user_id,
@@ -147,6 +239,16 @@ add_path <- \(con, user_id, original, hash) {
   dbAppendTable(con, "urls", row)
 }
 
+#' Get URLs
+#' 
+#' Retrieve URLs of a given user.
+#' 
+#' @inheritParams connection
+#' @param user_id Id of user.
+#' 
+#' @inheritParams connection
+#' 
+#' @keyword internal
 get_urls <- \(con, user_id) {
   query <- sprintf(
     "SELECT * FROM urls WHERE user_id = ?"
@@ -159,6 +261,13 @@ get_urls <- \(con, user_id) {
   dbFetch(obj)
 }
 
+#' Delete a URL
+#' 
+#' Delete a url from the database.
+#' 
+#' @inheritParams connection
+#' @param path Path to delete.
+#' 
 #' @importFrom DBI dbSendStatement
 delete_url <- \(con, path) {
   query <- sprintf(
@@ -171,8 +280,24 @@ delete_url <- \(con, path) {
   })
 }
 
+#' Increment count
+#' 
+#' Increment the count for a given path.
+#' 
+#' This is used to increment the `data` table at
+#' every redirect. 
+#' We only store the `url_id`, the `date`, and the `count`.
+#' 
+#' @inheritParams connection
+#' @param path Path to increment
+#' 
 #' @importFrom DBI dbGetQuery
+#' 
+#' @name increment
+#' 
+#' @keywords internal
 increment_data <- \(con, path) {
+  # get today's date
   date <- Sys.Date()
 
   # get path id
@@ -190,16 +315,22 @@ increment_data <- \(con, path) {
       path$id
     )
   )
+
+  # as.logical(1) = TRUE
+  # as.logical(0) = FALSE
   exists <- as.logical(nrow(existing))
 
+  # it exists, we UPDATE
   if(exists) {
     update_data(con, date, path$id, existing$count)
     return()
   }
 
+  # it does not exist we INSERT INTO
   create_data(con, date, path$id)
 }
 
+#' @rdname increment
 #' @importFrom DBI dbExecute
 update_data <- \(con, date, id, count) {
   count <- count + 1
@@ -214,6 +345,7 @@ update_data <- \(con, date, id, count) {
   )
 }
 
+#' @rdname increment
 #' @importFrom DBI dbExecute
 create_data <- \(con, date, id) {
   dbExecute(
@@ -236,12 +368,25 @@ create_data <- \(con, date, id) {
   )
 }
 
+#' Retrieve data
+#' 
+#' Retrieve the data of a given URL.
+#' 
+#' @inheritParams connection
+#' @param hash Path to retrieve data for.
+#' 
+#' @keywords internal
 get_hash_data <- \(con, hash) {
+  # we tail() to ensure
+  # we don't have to send too much data
+  # 1) could easily handle more
+  # 2) should paginate or do this smartly.
   query <- sprintf(
     "SELECT data.date, data.count FROM urls
     LEFT JOIN data ON urls.id = data.url_id
     WHERE hash = '%s';",
     hash
   )
-  dbGetQuery(con, query)
+  dbGetQuery(con, query) |> 
+    utils::tail(90L)
 }

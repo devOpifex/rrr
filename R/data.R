@@ -1,5 +1,18 @@
+#' GET data
+#' 
+#' Endpoint to retrieve data on a specifc URL.
+#' 
+#' @param con Database connection.
+#' 
+#' @keywords internal
 data_get <- \(con) {
   \(req, res) {
+
+    # this is in /profile
+    # the user must be authenticater
+    # this should therefore never happen
+    # (only authenticated user can make request)
+    # but if it does, we reject.
     if(!req$authenticated) {
       return(
         res$json(
@@ -10,6 +23,9 @@ data_get <- \(con) {
       )
     }
 
+    # the query should include a hash
+    # in the event something went wrong we 
+    # just exit here
     if(length(req$query$hash) == 0L) {
       return(
         res$json(
@@ -20,6 +36,7 @@ data_get <- \(con) {
       )
     }
 
+    # get data for specific /path (hash)
     data <- get_hash_data(con, req$query$hash)
 
     res$json(data)

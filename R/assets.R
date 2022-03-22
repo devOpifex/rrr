@@ -32,6 +32,9 @@ template_path <- \(...) {
   file.path(tmpls, ...)
 }
 
+#' Path to favicon
+#' 
+#' @keywords internal
 favicon_path <- \() {
   pkg_file("assets/img/favicon.ico")
 }
