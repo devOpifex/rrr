@@ -41,12 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const displayData = (e) => {
-  document.getElementById('plot').style.display = "block";
   
   fetch(`/profile/data?hash=${encodeURIComponent(e.target.dataset.hash)}`)
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       removeData(chart);
+
+      if(Object.keys(data[0]).length === 0) {
+        document.getElementById('plot').style.display = "none";
+        document.getElementById('no-data').style.display = "block";
+        return;
+      }
+      document.getElementById('plot').style.display = "block";
+      document.getElementById('no-data').style.display = "none";
+
       let dates = data.map(el => el.date);
       let values = data.map(el => el.count);
       

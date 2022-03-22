@@ -50,7 +50,8 @@ login_post <- \(con) {
     res$cookie(
       "rrr",
       user$id,
-      path = "/"
+      path = "/",
+      expires = Sys.Date() + 90L
     )
 
     res$status <- 302L
