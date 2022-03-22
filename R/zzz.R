@@ -4,5 +4,7 @@ FORBIDDEN_PATHS <- c(
   "login",
   "logout",
   "profile",
+  "about",
+  "profile",
   "about"
 )
