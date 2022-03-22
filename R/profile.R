@@ -89,8 +89,5 @@ profile <- \(con) {
   router$get("/", profile_get(con))
   router$post("/", profile_post(con))
 
-  # data
-  router$get("/data", data_get(con))
-
   return(router)
 }
