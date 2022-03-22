@@ -76,10 +76,7 @@ template_data <- \(con, req, ...) {
     ...
   )
 
-  data$authenticated <- is_authenticated(
-    con, 
-    req$cookie$rrr
-  )
+  data$authenticated <- req$authenticated
 
   return(data)
 }

@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
   [! partials/header.html !]
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+  <script src="/static/data.js"></script>
   <title>RRR - Profile</title>
 </head>
 <body>
@@ -13,7 +17,8 @@
       <div class="columns">
         <div class="column">
           <h2 class="is-size-4">Your URLs</h2>
-          <form method="POST" action="/profile/delete" enctype="multipart/form-data"><p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><button class="delete" type="submit"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></button></p></form>
+          <form method="POST" action="/profile/delete" enctype="multipart/form-data"><p class="shortened-url"><i class="fas fa-chart-bar get-data" data-hash="[% urls$hash %]"></i><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><button class="delete" type="submit"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></button></p></form>
+          <canvas id="plot" style="margin: 0 auto;display:none;" id="myChart" width="400" height="250"></canvas>
         </div>
         <div class="column">
           <h2 class="is-size-4">Shorten URL</h2>

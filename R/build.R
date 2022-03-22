@@ -22,9 +22,7 @@ build <- \(con) {
   app$use(scilis(get_key()))
   app$use(mid_tmpl_register(con))
   app$use(
-    signaculum(
-      system.file("assets/img/favicon.ico", package = "rrr")
-    )
+    signaculum(favicon_path())
   )
 
   # profile router

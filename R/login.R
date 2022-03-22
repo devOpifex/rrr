@@ -49,7 +49,8 @@ login_post <- \(con) {
 
     res$cookie(
       "rrr",
-      user$id
+      user$id,
+      path = "/"
     )
 
     res$status <- 302L

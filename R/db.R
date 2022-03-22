@@ -235,3 +235,13 @@ create_data <- \(con, date, id) {
     )
   )
 }
+
+get_hash_data <- \(con, hash) {
+  query <- sprintf(
+    "SELECT data.date, data.count FROM urls
+    LEFT JOIN data ON urls.id = data.url_id
+    WHERE hash = '%s';",
+    hash
+  )
+  dbGetQuery(con, query)
+}

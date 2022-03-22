@@ -31,3 +31,7 @@ template_path <- \(...) {
   tmpls <- pkg_file("templates")
   file.path(tmpls, ...)
 }
+
+favicon_path <- \() {
+  pkg_file("assets/img/favicon.ico")
+}

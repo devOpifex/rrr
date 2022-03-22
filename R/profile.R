@@ -106,5 +106,8 @@ profile <- \(con) {
   # reset
   router$post("/reset", reset_post(con))
 
+  # data
+  router$get("/data", data_get(con))
+
   return(router)
 }
