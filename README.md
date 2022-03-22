@@ -5,6 +5,8 @@
 
 A URL shortener built with [ambiorix](https://ambiorix.dev).
 
+:warning: Secure only on HTTPS.
+
 ## Installation
 
 You can install the development version of rrr from 
