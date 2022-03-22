@@ -7,7 +7,7 @@
     "man": "man"
   },
   "scripts": {
-    "css-build": "node-sass --omit-source-map-url sass/main.scss inst/assets/styles.css",
+    "css-build": "sass --style=compressed --no-source-map sass/main.scss inst/assets/styles.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },
