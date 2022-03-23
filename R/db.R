@@ -248,7 +248,7 @@ add_path <- \(con, user_id, original, hash) {
 #' 
 #' @inheritParams connection
 #' 
-#' @keyword internal
+#' @keywords internal
 get_urls <- \(con, user_id) {
   query <- sprintf(
     "SELECT * FROM urls WHERE user_id = ?"
