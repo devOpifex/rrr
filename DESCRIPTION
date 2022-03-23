@@ -23,11 +23,13 @@ Imports:
     digest,
     htmltools,
     scilis,
+    agris,
     signaculum
 Suggests:
   pkgload
 RoxygenNote: 7.1.2
 Remotes:
+  devOpifex/agris,
   devOpifex/scilis,
   devOpifex/alesia,
   devOpifex/ambiorix,

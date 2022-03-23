@@ -8,6 +8,7 @@
 #' @importFrom alesia alesia
 #' @importFrom scilis scilis
 #' @importFrom signaculum signaculum
+#' @importFrom agris agris
 #' 
 #' @return An object of class `Ambiorix`.
 #' 
@@ -18,6 +19,7 @@ build <- \(con) {
 
   app <- Ambiorix$new()
 
+  app$use(agris())
   app$use(alesia())
   app$use(scilis(get_key()))
   app$use(mid_tmpl_register(con))
