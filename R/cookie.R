@@ -9,7 +9,7 @@
 is_authenticated <- \(con, cookie) {
   # when we clear the cookie we set it to an
   # empty string
-  if(cookie == "")
+  if(is.character(cookie) && cookie == "")
     return(FALSE)
 
   # we are using scilis
