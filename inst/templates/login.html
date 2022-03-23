@@ -16,6 +16,7 @@
             <a href="/profile/register" class="has-text-primary">Register</a>
           </p>
           <form action="/profile/login" method="POST" enctype="multipart/form-data">
+            <input name="_csrf" type="hidden" value="[% csrf %]">
             <div class="field">
               <label class="label">Email</label>
               <p class="control has-icons-left has-icons-right">

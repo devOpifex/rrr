@@ -17,7 +17,7 @@ template_data(con, req, ...)
 All `template_*` methods added in `middleware`
 use this same function.
 Useful to add data that is required in every 
-(or most) templates, e.g.: whether
-the user is authenticated.
+(or many) templates, e.g.: whether
+the user is authenticated or the CSRF token.
 }
 \keyword{internal}

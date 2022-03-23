@@ -94,8 +94,8 @@ mid_tmpl_register <- \(con) {
 #' All `template_*` methods added in `middleware`
 #' use this same function.
 #' Useful to add data that is required in every 
-#' (or most) templates, e.g.: whether
-#' the user is authenticated.
+#' (or many) templates, e.g.: whether
+#' the user is authenticated or the CSRF token.
 #' 
 #' @inheritParams connection
 #' @inheritParams req
@@ -105,5 +105,6 @@ mid_tmpl_register <- \(con) {
 template_data <- \(con, req, ...) {
   data <- list(...)
   data$authenticated <- req$authenticated
+  data$csrf <- req$csrf_token()
   return(data)
 }

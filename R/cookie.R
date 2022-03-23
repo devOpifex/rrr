@@ -7,6 +7,11 @@
 #' 
 #' @keywords internal
 is_authenticated <- \(con, cookie) {
+  # when we clear the cookie we set it to an
+  # empty string
+  if(cookie == "")
+    return(FALSE)
+
   # we are using scilis
   # github.con/devOpifex/scilis
   # if the cookie has been tempered with

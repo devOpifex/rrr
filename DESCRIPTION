@@ -24,11 +24,13 @@ Imports:
     htmltools,
     scilis,
     agris,
-    signaculum
+    signaculum,
+    surf
 Suggests:
   pkgload
 RoxygenNote: 7.1.2
 Remotes:
+  devOpifex/surf,
   devOpifex/agris,
   devOpifex/scilis,
   devOpifex/alesia,

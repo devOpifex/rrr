@@ -9,6 +9,7 @@
 #' @importFrom scilis scilis
 #' @importFrom signaculum signaculum
 #' @importFrom agris agris
+#' @importFrom surf surf
 #' 
 #' @return An object of class `Ambiorix`.
 #' 
@@ -19,6 +20,7 @@ build <- \(con) {
 
   app <- Ambiorix$new()
 
+  app$use(surf())
   app$use(agris())
   app$use(alesia())
   app$use(scilis(get_key()))
