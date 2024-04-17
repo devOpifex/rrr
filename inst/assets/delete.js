@@ -5,13 +5,15 @@
 
   let toDelete;
   for (let i = 0; i < dels.length; i++) {
-    dels[i].addEventListener("click", (e) => {
+    dels[i].addEventListener("click", () => {
       toDelete = i;
       document.querySelector("#deletemodal").classList.add("is-active");
     });
   }
 
   const cancel = document.querySelector("#deletecancel");
+
+  if (!cancel) return;
 
   cancel.addEventListener("click", () => {
     document.querySelector("#deletemodal").classList.remove("is-active");
