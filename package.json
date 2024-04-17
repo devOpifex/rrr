@@ -7,7 +7,7 @@
     "man": "man"
   },
   "scripts": {
-    "css-build": "sass --style=compressed --no-source-map sass/main.scss inst/assets/styles.css"
+    "css-build": "sass --load-path=node_modules sass/main.scss inst/assets/styles.css"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/devOpifex/rrr#readme",
   "devDependencies": {
-    "bulma": "^0.9.3"
+    "bulma": "^1.0.0"
   }
 }

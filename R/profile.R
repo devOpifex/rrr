@@ -83,7 +83,6 @@ profile_post <- \(con) {
         )
       )
 
-    print(body$path)
     if(!is_valid_path(body$path))
       return(
         res$template_profile(

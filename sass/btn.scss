@@ -1,4 +1,4 @@
-.delete {
+.del {
   border: none;
   background: none;
   color: $red;
@@ -8,4 +8,8 @@
 .get-data {
   color: #7b8085;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
