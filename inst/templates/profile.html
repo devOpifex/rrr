@@ -17,7 +17,7 @@
       <div class="columns">
         <div class="column">
           <h2 class="is-size-4">Your URLs</h2>
-            <form method="POST" action="/profile/delete" enctype="multipart/form-data"><input name="_csrf" type="hidden" value="[% csrf %]"><p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><a id="predelete" class="del mr-2"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></a><button id="delete" class="mr-2 hidden" type="submit"></button><i class="fas fa-chart-bar get-data" data-hash="[% urls$hash %]"></i></p></form>
+            <form class="url" method="POST" action="/profile/delete" enctype="multipart/form-data"><input name="_csrf" type="hidden" value="[% csrf %]"><p class="shortened-url"><a href="https://rrr.is/[% urls$hash %]"><span class="icon-text"><span class="icon"><i class="fas fa-external-link-alt"></i></span><span>rrr.is/[% urls$hash %]</span></span></a> [% urls$original %] <input name="delete" value="[% urls$hash %]" type="hidden" /><a class="predelete del mr-2"><span class="icon has-text-danger"><i class="fas fa-trash"></i></span></a><button class="realdelete mr-2 hidden" type="submit"></button><i class="fas fa-chart-bar get-data" data-hash="[% urls$hash %]"></i></p></form>
           <br/>
           <canvas id="plot" style="margin:0 auto;display:none;" width="400" height="150"></canvas>
           <div id="no-data" class="box" style="display: none;">
@@ -131,7 +131,7 @@
       </section>
       <footer class="modal-card-foot">
         <div class="buttons">
-          <button id="deleteconfirm" class="button is-link">Save changes</button>
+          <button id="deleteconfirm" class="button is-link">Delete</button>
           <button id="deletecancel" class="button">Cancel</button>
         </div>
       </footer>
